@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recetas - Los ALMEYDAS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 min-h-screen flex flex-col">
+
+    <header class="bg-white shadow-md p-4 flex justify-between items-center rounded-b-lg">
+        <div class="flex-shrink-0">
+            <img src="/Imagenes/logo.jpeg" alt="Logo Los Almeydas" class="h-16">
+        </div>
+        <nav class="flex items-center space-x-2 sm:space-x-4">
+            <div class="text-center font-inter flex flex-wrap justify-center items-center space-x-2 sm:space-x-4">
+                <a href="/main.html" class="nav-link">Inicio</a>
+                <a href="/index.html" class="nav-link">Productos</a>
+                <a href="/recetas.html" class="nav-link bg-gray-200 shadow-md text-black-600">Recetas</a>
+                <a href="/contacto.html" class="nav-link">Contacto</a>
+                <a id="perfil-link" href="/perfil.html" class="nav-link hidden">Perfil</a>
+                <a id="admin-link" href="/dashboard.html" class="nav-link hidden">Gestión</a>
+                <a href="/cart.html" class="nav-link">🛒 Carrito (<span id="cart-count">0</span>)</a>
+                <span id="user-name" class="text-red-600 font-bold hidden"></span>
+                <a id="auth-nav-link" href="/auth.html" class="nav-link">Login / Registro</a>
+                <button id="logout-button" class="nav-link hidden">Cerrar Sesión</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto p-6 flex-grow">
+        <h1 class="text-3xl font-bold text-center text-red-700 mb-8">Nuestras Recetas</h1>
+
+        <div id="loading-spinner" class="flex justify-center items-center py-10">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-red-700"></div>
+        </div>
+
+        <div id="recipes-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Las recetas se cargarán aquí dinámicamente -->
+        </div>
+    </main>
+
+    <!-- Modal de Receta -->
+    <div id="recipe-modal"
+        class="fixed inset-0 bg-black bg-opacity-50 hidden flex justify-center items-center z-50 p-4">
+        <div class="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto relative">
+            <button id="close-modal"
+                class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
+            <div id="modal-content" class="p-6">
+                <!-- Contenido del modal -->
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-gray-800 text-white p-4 text-center mt-8 rounded-t-lg">
+        <p>&copy; 2025 Los ALMEYDAS. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="/js/recetas.js"></script>
+    <script>
+        // Lógica para el menú de usuario (consistencia con main.html)
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = JSON.parse(localStorage.getItem('user'));
+            const token = localStorage.getItem('token');
+            const authNavLink = document.getElementById('auth-nav-link');
+            const logoutButton = document.getElementById('logout-button');
+            const adminLink = document.getElementById('admin-link');
+            const perfilLink = document.getElementById('perfil-link');
+            const userNameSpan = document.getElementById('user-name');
+            const cartCountSpan = document.getElementById('cart-count');
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            if (cartCountSpan) cartCountSpan.textContent = cart.reduce((sum, item) => sum + item.cantidad, 0);
+
+            if (user && token) {
+                // Mostrar nombre de usuario
+                if (userNameSpan) {
+                    userNameSpan.textContent = user.nombre_usuario;
+                    userNameSpan.classList.remove('hidden');
+                }
+                // Actualizar navegación
+                authNavLink.classList.add('hidden');
+                logoutButton.classList.remove('hidden');
+                if (perfilLink) perfilLink.classList.remove('hidden');
+                if (user.rol === 'admin') adminLink.classList.remove('hidden');
+            } else {
+                authNavLink.classList.remove('hidden');
+                logoutButton.classList.add('hidden');
+                adminLink.classList.add('hidden');
+                if (perfilLink) perfilLink.classList.add('hidden');
+                if (userNameSpan) userNameSpan.classList.add('hidden');
+            }
+
+            if (logoutButton) {
+                logoutButton.addEventListener('click', () => {
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('user');
+                    localStorage.removeItem('cart');
+                    window.location.href = '/';
+                });
+            }
+
+            // Estilos CSS para los enlaces de navegación
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.add('bg-transparent', 'text-red-600', 'py-2', 'px-4', 'rounded-lg', 'transition', 'duration-300', 'ease-in-out', 'transform', 'hover:scale-105', 'hover:shadow-md', 'hover:bg-gray-300', 'hover:text-black', 'inline-block');
+            });
+            document.querySelector('.nav-link.bg-gray-200').classList.remove('text-red-600');
+        });
+    </script>
+</body>
+
+</html>

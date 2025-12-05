@@ -1,0 +1,23 @@
+/* Animated Smoke Background - Only affects canvas background */
+
+/* Canvas para el efecto de humo */
+#smoke-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    background: #706f6f;
+    /* Medium gray background only for canvas */
+}
+
+/* Asegurar que el contenido esté encima */
+main,
+header,
+footer,
+.container {
+    position: relative;
+    z-index: 1;
+}

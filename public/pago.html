@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pago - Los Almeyda</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/animated-background.css">
+</head>
+
+<body class="bg-white min-h-screen font-inter">
+
+    <header class="bg-white shadow-md p-4 flex justify-between items-center rounded-b-lg">
+        <div class="flex-shrink-0">
+            <img src="/Imagenes/logo.jpeg" alt="Logo Los Almeyda" class="h-16">
+        </div>
+        <nav class="flex items-center space-x-2 sm:space-x-4">
+            <div class="text-center font-inter flex flex-wrap justify-center items-center space-x-2 sm:space-x-4">
+                <a href="/main.html" class="nav-link">Inicio</a>
+                <a href="/index.html" class="nav-link">Productos</a>
+                <a href="/recetas.html" class="nav-link">Recetas</a>
+                <a href="/contacto.html" class="nav-link">Contacto</a>
+                <a id="perfil-link" href="/perfil.html" class="nav-link hidden">Perfil</a>
+                <a href="/cart.html" class="nav-link">🛒</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-8">
+        <h1 class="text-3xl font-bold text-center mb-8">Pago</h1>
+
+        <!-- Resumen del pedido -->
+        <div class="bg-white shadow-lg rounded-lg p-6 mb-6">
+            <h2 class="text-2xl font-semibold mb-4">Resumen del pedido</h2>
+            <div class="space-y-2">
+                <div class="flex justify-between">
+                    <span class="font-semibold text-red-600">Sub-total</span>
+                    <span id="order-subtotal" class="font-bold"></span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="font-semibold text-red-600">Envío</span>
+                    <span id="order-shipping" class="font-bold"></span>
+                </div>
+                <div class="flex justify-between text-xl border-t-2 pt-2 mt-2">
+                    <span class="font-semibold text-red-600">Total</span>
+                    <span id="order-total" class="font-bold"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dirección de envío -->
+        <div class="bg-white shadow-lg rounded-lg p-6 mb-6">
+            <h2 class="text-xl font-semibold mb-2">Dirección de envío</h2>
+            <p id="delivery-address" class="text-gray-700"></p>
+        </div>
+
+        <!-- Método de pago -->
+        <div class="bg-white shadow-lg rounded-lg p-6 mb-6">
+            <h2 class="text-xl font-semibold mb-4">Método del pago</h2>
+            <p class="text-gray-600 mb-4">Selecciona el método de pago donde deseas realizar el pago.</p>
+
+            <div class="space-y-3">
+                <label class="flex items-center p-4 border-2 rounded-lg cursor-pointer hover:bg-gray-50">
+                    <input type="radio" name="payment-method" value="Bancolombia" class="mr-3">
+                    <span class="font-semibold">Bancolombia</span>
+                </label>
+                <label class="flex items-center p-4 border-2 rounded-lg cursor-pointer hover:bg-gray-50">
+                    <input type="radio" name="payment-method" value="Bre-B" class="mr-3">
+                    <span class="font-semibold">Bre-B</span>
+                </label>
+            </div>
+
+            <!-- QR Code Display -->
+            <div id="qr-display" class="hidden mt-6 text-center">
+                <h3 class="text-lg font-semibold mb-3">Escanea el código QR</h3>
+                <img id="qr-image" src="" alt="QR Code" class="mx-auto max-w-xs">
+                <p id="qr-reference" class="mt-3 text-gray-600"></p>
+            </div>
+        </div>
+
+        <!-- Campo de comprobante -->
+        <div class="bg-white shadow-lg rounded-lg p-6 mb-6">
+            <label class="block text-lg font-semibold mb-2">Número de comprobante de pago *</label>
+            <input type="text" id="payment-receipt" class="w-full px-4 py-2 border-2 rounded-lg"
+                placeholder="Ingresa el número del comprobante" required>
+        </div>
+
+        <!-- Botón confirmar -->
+        <button id="confirm-order-btn"
+            class="w-full bg-red-600 text-white font-bold py-4 rounded-lg hover:bg-red-700 transition">
+            Pagar
+        </button>
+    </main>
+
+    <script src="/js/cursor-interaction.js"></script>
+    <script src="/js/pago.js"></script>
+    <script>
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.add('bg-transparent', 'text-red-600', 'py-2', 'px-4', 'rounded-lg', 'transition', 'duration-300', 'ease-in-out', 'transform', 'hover:scale-105', 'hover:shadow-md', 'hover:bg-gray-300', 'hover:text-black', 'inline-block');
+        });
+    </script>
+</body>
+
+</html>

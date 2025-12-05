@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido Confirmado - Los Almeyda</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/animated-background.css">
+</head>
+
+<body class="bg-white min-h-screen font-inter">
+
+    <header class="bg-white shadow-md p-4 flex justify-between items-center rounded-b-lg">
+        <div class="flex-shrink-0">
+            <img src="/Imagenes/logo.jpeg" alt="Logo Los Almeyda" class="h-16">
+        </div>
+        <nav class="flex items-center space-x-2 sm:space-x-4">
+            <div class="text-center font-inter flex flex-wrap justify-center items-center space-x-2 sm:space-x-4">
+                <a href="/main.html" class="nav-link">Inicio</a>
+                <a href="/index.html" class="nav-link">Productos</a>
+                <a href="/recetas.html" class="nav-link">Recetas</a>
+                <a href="/contacto.html" class="nav-link">Contacto</a>
+                <a href="/perfil.html" class="nav-link">Perfil</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-8">
+        <div class="bg-white shadow-lg rounded-lg p-8 max-w-2xl mx-auto">
+            <!-- Título de confirmación -->
+            <div class="text-center mb-8">
+                <div class="text-6xl mb-4">✅</div>
+                <h1 class="text-3xl font-bold text-green-600 mb-2">Pedido confirmado exitosamente</h1>
+            </div>
+
+            <!-- Número de Orden -->
+            <div class="bg-red-50 border-2 border-red-600 rounded-lg p-6 mb-6">
+                <div class="flex items-center justify-center space-x-3">
+                    <span class="text-2xl">📋</span>
+                    <div>
+                        <p class="text-sm text-gray-600">Número de Orden</p>
+                        <p id="order-number" class="text-3xl font-bold text-red-600">#0000</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Datos del Cliente -->
+            <div class="mb-6">
+                <h2 class="text-xl font-semibold mb-3 text-red-600">Datos del Cliente</h2>
+                <div class="space-y-2">
+                    <p><span class="font-semibold">Nombre:</span> <span id="customer-name"></span></p>
+                    <p><span class="font-semibold">Teléfono:</span> <span id="customer-phone"></span></p>
+                </div>
+            </div>
+
+            <!-- Dirección de Entrega -->
+            <div class="mb-6">
+                <h2 class="text-xl font-semibold mb-3 text-red-600">Dirección de Entrega</h2>
+                <p id="delivery-address"></p>
+            </div>
+
+            <!-- Método de Pago -->
+            <div class="mb-6">
+                <h2 class="text-xl font-semibold mb-3 text-red-600">Método de Pago</h2>
+                <p id="payment-method"></p>
+            </div>
+
+            <!-- Comprobante -->
+            <div class="mb-6">
+                <h2 class="text-xl font-semibold mb-3 text-red-600">Comprobante</h2>
+                <p id="receipt-number"></p>
+            </div>
+
+            <!-- Productos -->
+            <div class="mb-6">
+                <h2 class="text-xl font-semibold mb-3 text-red-600">Productos</h2>
+                <div id="products-list" class="space-y-2"></div>
+            </div>
+
+            <!-- Totales -->
+            <div class="border-t-2 pt-4 space-y-2">
+                <div class="flex justify-between text-lg">
+                    <span class="font-semibold">Sub-total:</span>
+                    <span id="subtotal" class="font-bold"></span>
+                </div>
+                <div class="flex justify-between text-lg">
+                    <span class="font-semibold">Envío:</span>
+                    <span id="shipping" class="font-bold"></span>
+                </div>
+                <div class="flex justify-between text-2xl border-t-2 pt-2">
+                    <span class="font-semibold">Total:</span>
+                    <span id="total" class="font-bold text-red-600"></span>
+                </div>
+            </div>
+
+            <!-- Botones -->
+            <div class="mt-8 flex gap-4">
+                <a href="/index.html"
+                    class="flex-1 bg-red-600 text-white text-center font-bold py-3 rounded-lg hover:bg-red-700 transition">
+                    Seguir Comprando
+                </a>
+                <a href="/perfil.html"
+                    class="flex-1 bg-gray-600 text-white text-center font-bold py-3 rounded-lg hover:bg-gray-700 transition">
+                    Ver Pedidos
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <script src="/js/cursor-interaction.js"></script>
+    <script src="/js/pedido-confirmado.js"></script>
+    <script>
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.add('bg-transparent', 'text-red-600', 'py-2', 'px-4', 'rounded-lg', 'transition', 'duration-300', 'ease-in-out', 'transform', 'hover:scale-105', 'hover:shadow-md', 'hover:bg-gray-300', 'hover:text-black', 'inline-block');
+        });
+    </script>
+</body>
+
+</html>

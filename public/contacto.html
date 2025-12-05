@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Los ALMEYDAS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="bg-gray-50 min-h-screen flex flex-col font-inter">
+
+    <header class="bg-white shadow-md p-4 flex justify-between items-center rounded-b-lg">
+        <div class="flex-shrink-0">
+            <img src="/Imagenes/logo.jpeg" alt="Logo Los Almeydas" class="h-16">
+        </div>
+        <nav class="flex items-center space-x-2 sm:space-x-4">
+            <div class="text-center font-inter flex flex-wrap justify-center items-center space-x-2 sm:space-x-4">
+                <a href="/main.html" class="nav-link">Inicio</a>
+                <a href="/index.html" class="nav-link">Productos</a>
+                <a href="/recetas.html" class="nav-link">Recetas</a>
+                <a href="/contacto.html" class="nav-link bg-gray-200 shadow-md text-black-600">Contacto</a>
+                <a id="perfil-link" href="/perfil.html" class="nav-link hidden">Perfil</a>
+                <a id="admin-link" href="/dashboard.html" class="nav-link hidden">Gestión</a>
+                <a href="/cart.html" class="nav-link">🛒 Carrito (<span id="cart-count">0</span>)</a>
+                <span id="user-name" class="text-red-600 font-bold hidden"></span>
+                <a id="auth-nav-link" href="/auth.html" class="nav-link">Login / Registro</a>
+                <button id="logout-button" class="nav-link hidden">Cerrar Sesión</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto p-6 flex-grow">
+        <h1 class="text-3xl font-bold text-center text-red-700 mb-8">Contáctanos</h1>
+
+        <div class="grid md:grid-cols-2 gap-8">
+            <!-- Información de Contacto -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-semibold mb-4 text-gray-800">Información</h2>
+                <div class="space-y-4 text-gray-600">
+                    <p class="flex items-center">
+                        <span class="font-bold w-24">Dirección:</span>
+                        Calle 37 sur 89-75 b / barrio malini
+                    </p>
+                    <p class="flex items-center">
+                        <span class="font-bold w-24">Teléfono:</span>
+                        +57 300 123 4567
+                    </p>
+                    <p class="flex items-center">
+                        <span class="font-bold w-24">Email:</span>
+                        contacto@losalmeyda.com
+                    </p>
+                    <p class="flex items-center">
+                        <span class="font-bold w-24">Horario:</span>
+                        Lunes a Sábado: 8:00 AM - 6:00 PM
+                    </p>
+                </div>
+            </div>
+
+            <!-- Mapa de Google Maps -->
+            <div class="bg-white p-2 rounded-lg shadow-md h-96">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.923456789!2d-74.000000!3d4.600000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zM4KwMzYnMDAuMCJOIDc0wrAwMCcwMC4wIlc!5e0!3m2!1ses!2sco!4v1600000000000!5m2!1ses!2sco"
+                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+
+        <!-- WhatsApp Contact Button -->
+        <div class="mt-8 bg-white p-8 rounded-lg shadow-md text-center">
+            <h2 class="text-2xl font-bold text-green-600 mb-4">¡Chatea con nosotros por WhatsApp!</h2>
+            <p class="text-gray-700 mb-6">¿Tienes alguna pregunta? Escríbenos y te responderemos enseguida.</p>
+            <a href="https://wa.me/573017250231?text=Hola,%20me%20gustaría%20obtener%20más%20información%20sobre%20sus%20productos"
+                target="_blank" rel="noopener noreferrer"
+                class="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-8 rounded-lg transition duration-300 transform hover:scale-105 shadow-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
+                    <path
+                        d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z" />
+                </svg>
+                <span class="text-xl">Chatear en WhatsApp</span>
+            </a>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white p-4 text-center mt-8 rounded-t-lg">
+        <p>&copy; 2025 Los ALMEYDAS. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // Lógica para el menú de usuario (consistencia con main.html)
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = JSON.parse(localStorage.getItem('user'));
+            const token = localStorage.getItem('token');
+            const authNavLink = document.getElementById('auth-nav-link');
+            const logoutButton = document.getElementById('logout-button');
+            const adminLink = document.getElementById('admin-link');
+            const perfilLink = document.getElementById('perfil-link');
+            const userNameSpan = document.getElementById('user-name');
+            const cartCountSpan = document.getElementById('cart-count');
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            if (cartCountSpan) cartCountSpan.textContent = cart.reduce((sum, item) => sum + item.cantidad, 0);
+
+            if (user && token) {
+                // Mostrar nombre de usuario
+                if (userNameSpan) {
+                    userNameSpan.textContent = user.nombre_usuario;
+                    userNameSpan.classList.remove('hidden');
+                }
+                // Actualizar navegación
+                authNavLink.classList.add('hidden');
+                logoutButton.classList.remove('hidden');
+                if (perfilLink) perfilLink.classList.remove('hidden');
+                if (user.rol === 'admin') adminLink.classList.remove('hidden');
+            } else {
+                authNavLink.classList.remove('hidden');
+                logoutButton.classList.add('hidden');
+                adminLink.classList.add('hidden');
+                if (perfilLink) perfilLink.classList.add('hidden');
+                if (userNameSpan) userNameSpan.classList.add('hidden');
+            }
+
+            if (logoutButton) {
+                logoutButton.addEventListener('click', () => {
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('user');
+                    localStorage.removeItem('cart');
+                    window.location.href = '/';
+                });
+            }
+
+            // Estilos CSS para los enlaces de navegación
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.add('bg-transparent', 'text-red-600', 'py-2', 'px-4', 'rounded-lg', 'transition', 'duration-300', 'ease-in-out', 'transform', 'hover:scale-105', 'hover:shadow-md', 'hover:bg-gray-300', 'hover:text-black', 'inline-block');
+            });
+            document.querySelector('.nav-link.bg-gray-200').classList.remove('text-red-600');
+        });
+    </script>
+</body>
+
+</html>

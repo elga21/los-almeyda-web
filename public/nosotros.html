@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nosotros - Los ALMEYDAS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="css/nosotros.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body class="bg-gray-50 min-h-screen flex flex-col font-inter">
+
+  <header class="bg-white shadow-md p-4 flex justify-between items-center rounded-b-lg">
+    <div class="flex-shrink-0">
+      <img src="/Imagenes/logo.jpeg" alt="Logo Los Almeydas" class="h-16">
+    </div>
+    <nav class="flex items-center space-x-2 sm:space-x-4">
+      <div class="text-center font-inter flex flex-wrap justify-center items-center space-x-2 sm:space-x-4">
+        <a href="/main.html" class="nav-link">Inicio</a>
+        <a href="/index.html" class="nav-link">Productos</a>
+        <a href="/recetas.html" class="nav-link">Recetas</a>
+        <a href="/nosotros.html" class="nav-link bg-gray-200 shadow-md text-black-600">Nosotros</a>
+        <a href="/contacto.html" class="nav-link">Contacto</a>
+        <a id="perfil-link" href="/perfil.html" class="nav-link hidden">Perfil</a>
+        <a id="admin-link" href="/dashboard.html" class="nav-link hidden">Gestión</a>
+        <a href="/cart.html" class="nav-link">🛒 Carrito (<span id="cart-count">0</span>)</a>
+        <span id="user-name" class="text-red-600 font-bold hidden"></span>
+        <a id="auth-nav-link" href="/auth.html" class="nav-link">Login / Registro</a>
+        <button id="logout-button" class="nav-link hidden">Cerrar Sesión</button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="contenido">
+    <div class="info-nosotros">
+      <img src="Imagenes/nosotros.jpeg" alt="Vaca Brahman">
+      <div class="texto">
+        <h1>Los Almeyda</h1>
+        <h3>Carnicería</h3>
+        <p>
+          Con más de 40 años de trayectoria en la zona de comercialización de carnes, vísceras, embutidos y
+          otros productos con relación a los cárnicos en Floridablanca y todos sus alrededores.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-gray-100 p-4">
+    <div class="flex justify-center items-center space-x-8">
+      <!-- Facebook -->
+      <a href="https://facebook.com" target="_blank"
+        class="text-2xl text-blue-600 hover:scale-110 transition-transform duration-300">
+        <i class="fab fa-facebook"></i>
+      </a>
+
+      <!-- Instagram -->
+      <a href="https://instagram.com" target="_blank"
+        class="text-2xl text-pink-500 hover:scale-110 transition-transform duration-300">
+        <i class="fab fa-instagram"></i>
+      </a>
+
+      <!-- YouTube -->
+      <a href="https://youtube.com" target="_blank"
+        class="text-2xl text-red-600 hover:scale-110 transition-transform duration-300">
+        <i class="fab fa-youtube"></i>
+      </a>
+
+      <!-- X (Twitter) -->
+      <a href="https://twitter.com" target="_blank"
+        class="text-2xl text-black hover:scale-110 transition-transform duration-300">
+        <i class="fab fa-x-twitter"></i>
+      </a>
+
+      <!-- GitHub -->
+      <a href="https://github.com/elga21/ad_LosAlmeida" target="_blank"
+        class="text-2xl text-gray-800 hover:scale-110 transition-transform duration-300">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="https://www.ibero.edu.co/" target="_blank" class="hover:scale-110 transition-transform duration-300">
+        <img src="imag/IBERO_logo.png" alt="Iberoamericana" class="h-8">
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    // Lógica para el menú de usuario (consistencia con main.html)
+    document.addEventListener('DOMContentLoaded', () => {
+      const user = JSON.parse(localStorage.getItem('user'));
+      const token = localStorage.getItem('token');
+      const authNavLink = document.getElementById('auth-nav-link');
+      const logoutButton = document.getElementById('logout-button');
+      const adminLink = document.getElementById('admin-link');
+      const perfilLink = document.getElementById('perfil-link');
+      const userNameSpan = document.getElementById('user-name');
+      const cartCountSpan = document.getElementById('cart-count');
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+      if (cartCountSpan) cartCountSpan.textContent = cart.reduce((sum, item) => sum + item.cantidad, 0);
+
+      if (user && token) {
+        // Mostrar nombre de usuario
+        if (userNameSpan) {
+          userNameSpan.textContent = user.nombre_usuario;
+          userNameSpan.classList.remove('hidden');
+        }
+        // Actualizar navegación
+        authNavLink.classList.add('hidden');
+        logoutButton.classList.remove('hidden');
+        if (perfilLink) perfilLink.classList.remove('hidden');
+        if (user.rol === 'admin') adminLink.classList.remove('hidden');
+      } else {
+        authNavLink.classList.remove('hidden');
+        logoutButton.classList.add('hidden');
+        adminLink.classList.add('hidden');
+        if (perfilLink) perfilLink.classList.add('hidden');
+        if (userNameSpan) userNameSpan.classList.add('hidden');
+      }
+
+      if (logoutButton) {
+        logoutButton.addEventListener('click', () => {
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+          localStorage.removeItem('cart');
+          window.location.href = '/';
+        });
+      }
+
+      // Estilos CSS para los enlaces de navegación
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.add('bg-transparent', 'text-red-600', 'py-2', 'px-4', 'rounded-lg', 'transition', 'duration-300', 'ease-in-out', 'transform', 'hover:scale-105', 'hover:shadow-md', 'hover:bg-gray-300', 'hover:text-black', 'inline-block');
+      });
+      document.querySelector('.nav-link.bg-gray-200').classList.remove('text-red-600');
+    });
+  </script>
+  <script src="/js/cursor-interaction.js"></script>
+</body>
+
+</html>

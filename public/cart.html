@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras - Los Almeyda</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/animated-background.css">
+</head>
+
+<body class="bg-white min-h-screen font-inter">
+
+    <header class="bg-white shadow-md p-4 flex justify-between items-center rounded-b-lg">
+        <div class="flex-shrink-0">
+            <img src="/Imagenes/logo.jpeg" alt="Logo Los Almeyda" class="h-16">
+        </div>
+        <nav class="flex items-center space-x-2 sm:space-x-4">
+            <div class="text-center font-inter flex flex-wrap justify-center items-center space-x-2 sm:space-x-4">
+                <a href="/main.html" class="nav-link">Inicio</a>
+                <a href="/index.html" class="nav-link">Productos</a>
+                <a href="/recetas.html" class="nav-link">Recetas</a>
+                <a href="/contacto.html" class="nav-link">Contacto</a>
+                <a id="perfil-link" href="/perfil.html" class="nav-link hidden">Perfil</a>
+                <a id="admin-link" href="/dashboard.html" class="nav-link hidden">Gestión</a>
+                <a href="/cart.html" class="nav-link">🛒 <span id="cart-count">0</span></a>
+                <span id="user-name" class="text-red-600 font-bold hidden"></span>
+                <a id="auth-nav-link" href="/auth.html" class="nav-link">Login / Registro</a>
+                <button id="logout-button" class="nav-link hidden">Cerrar Sesión</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-8">
+        <h1 class="text-3xl font-bold text-center mb-8">Carrito de compras</h1>
+
+        <!-- Tabla de productos -->
+        <div class="bg-white shadow-lg rounded-lg p-6 mb-6">
+            <table class="w-full">
+                <thead>
+                    <tr class="border-b-2 border-gray-200">
+                        <th class="text-left py-3 text-red-600 font-bold">Productos</th>
+                        <th class="text-left py-3 text-red-600 font-bold">Pesaje</th>
+                        <th class="text-center py-3 text-red-600 font-bold">Cantidad</th>
+                        <th class="text-right py-3 text-red-600 font-bold">Precio unitario</th>
+                        <th class="text-right py-3 text-red-600 font-bold">Precio total</th>
+                    </tr>
+                </thead>
+                <tbody id="cart-items">
+                    <!-- Los items del carrito se insertan aquí -->
+                </tbody>
+            </table>
+            <p id="empty-cart" class="text-center text-gray-500 py-8 hidden">Tu carrito está vacío</p>
+        </div>
+
+        <!-- Dirección de envío y checkbox -->
+        <div id="shipping-section" class="bg-white shadow-lg rounded-lg p-6 mb-6 hidden">
+            <h2 class="text-xl font-semibold mb-4">Dirección de envío</h2>
+            <div class="flex items-center justify-between">
+                <p id="user-address" class="text-gray-700"></p>
+                <a href="/perfil.html" class="text-blue-600 hover:text-blue-800">
+                    ✏️ Editar
+                </a>
+            </div>
+            <div class="mt-4">
+                <label class="flex items-center cursor-pointer">
+                    <input type="checkbox" id="require-delivery" class="mr-2" checked>
+                    <span>Requiero domicilio (+$10.000)</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Resumen del pedido -->
+        <div class="bg-white shadow-lg rounded-lg p-6">
+            <h2 class="text-2xl font-semibold mb-4">Resumen del pedido</h2>
+            <div class="space-y-3">
+                <div class="flex justify-between text-lg">
+                    <span class="font-semibold text-red-600">Sub-total</span>
+                    <span id="subtotal" class="font-bold">$ 0</span>
+                </div>
+                <div class="flex justify-between text-lg">
+                    <span class="font-semibold text-red-600">Envío</span>
+                    <span id="shipping-cost" class="font-bold">$ 10.000</span>
+                </div>
+                <div class="flex justify-between text-2xl border-t-2 pt-3">
+                    <span class="font-semibold text-red-600">Total</span>
+                    <span id="total" class="font-bold">$ 0</span>
+                </div>
+            </div>
+            <button id="checkout-btn"
+                class="w-full mt-6 bg-red-600 text-white font-bold py-3 rounded-lg hover:bg-red-700 transition">
+                Procesar el Pago
+            </button>
+        </div>
+    </main>
+
+    <script src="/js/cursor-interaction.js"></script>
+    <script src="/js/cart-enhanced.js"></script>
+    <script>
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.add('bg-transparent', 'text-red-600', 'py-2', 'px-4', 'rounded-lg', 'transition', 'duration-300', 'ease-in-out', 'transform', 'hover:scale-105', 'hover:shadow-md', 'hover:bg-gray-300', 'hover:text-black', 'inline-block');
+        });
+    </script>
+    <script src="/js/smoke-effect.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bienvenidos - Los Almeyda</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/animated-background.css">
+</head>
+
+<body class="bg-white min-h-screen font-inter">
+
+  <header class="bg-white shadow-md p-4 flex justify-between items-center rounded-b-lg">
+    <div class="flex-shrink-0">
+      <img src="/Imagenes/logo.jpeg" alt="Logo Los Almeyda" class="h-16">
+    </div>
+    <nav class="flex items-center space-x-2 sm:space-x-4">
+      <div class="text-center font-inter flex flex-wrap justify-center items-center space-x-2 sm:space-x-4">
+        <a href="/main.html" class="nav-link bg-pink-100 text-red-600">Inicio</a>
+        <a href="/index.html" class="nav-link">Productos</a>
+        <a href="/recetas.html" class="nav-link">Recetas</a>
+        <a href="/contacto.html" class="nav-link">Contacto</a>
+        <a id="perfil-link" href="/perfil.html" class="nav-link hidden">Perfil</a>
+        <a id="admin-link" href="/dashboard.html" class="nav-link hidden">Gestión</a>
+        <a href="/cart.html" class="nav-link">🛒 <span id="cart-count">0</span></a>
+        <span id="user-name" class="text-red-600 font-bold hidden"></span>
+        <a id="auth-nav-link" href="/auth.html" class="nav-link">Login / Registro</a>
+        <button id="logout-button" class="nav-link hidden bg-gray-200">Cerrar Sesión</button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container mx-auto px-6 py-8">
+    <!-- Título de Bienvenida -->
+    <div class="text-center mb-8">
+      <h1 class="text-4xl font-bold text-red-700 mb-4">Bienvenidos a Los Almeyda</h1>
+      <p class="text-lg text-black font-semibold max-w-4xl mx-auto">
+        Con más de 40 años de experiencia en la comercialización de carnes, vísceras, embutidos y otros productos
+        cárnicos, Los Almeyda se ha consolidado como una carnicería tradicional y confiable en Floridablanca y sus
+        alrededores.
+      </p>
+      <p class="text-lg text-black font-semibold max-w-4xl mx-auto mt-2">
+        Encuentra siempre calidad, frescura y confianza en cada producto.
+      </p>
+    </div>
+
+    <!-- Grid de Imágenes 2x2 -->
+    <div class="grid grid-cols-2 gap-4 max-w-6xl mx-auto">
+      <div class="overflow-hidden rounded-lg shadow-lg">
+        <img src="/Imagenes/ini1.png" alt="Carnes de Res"
+          class="w-full h-64 object-cover hover:scale-105 transition duration-300"
+          onerror="this.src='https://via.placeholder.com/600x400/FF0000/FFFFFF?text=Carnes+de+Res'">
+      </div>
+      <div class="overflow-hidden rounded-lg shadow-lg">
+        <img src="/Imagenes/ini2.png" alt="Carnes de Pollo"
+          class="w-full h-64 object-cover hover:scale-105 transition duration-300"
+          onerror="this.src='https://via.placeholder.com/600x400/FFA500/FFFFFF?text=Carnes+de+Pollo'">
+      </div>
+      <div class="overflow-hidden rounded-lg shadow-lg">
+        <img src="/Imagenes/ini3.png" alt="Productos del Mar"
+          class="w-full h-64 object-cover hover:scale-105 transition duration-300"
+          onerror="this.src='https://via.placeholder.com/600x400/0000FF/FFFFFF?text=Del+Mar'">
+      </div>
+      <div class="overflow-hidden rounded-lg shadow-lg">
+        <img src="/Imagenes/ini4.png" alt="Embutidos"
+          class="w-full h-64 object-cover hover:scale-105 transition duration-300"
+          onerror="this.src='https://via.placeholder.com/600x400/800080/FFFFFF?text=Embutidos'">
+      </div>
+    </div>
+
+    <!-- Botón para ver productos -->
+    <div class="text-center mt-12">
+      <a href="/index.html"
+        class="inline-block bg-red-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-red-700 transition duration-300">
+        Ver Productos
+      </a>
+    </div>
+  </main>
+
+  <script src="/js/cursor-interaction.js"></script>
+  <script>
+    // Actualizar conteo de carrito
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    document.getElementById('cart-count').textContent = cart.length;
+
+    // Mostrar nombre de usuario y botones según autenticación
+    const user = JSON.parse(localStorage.getItem('user'));
+    const token = localStorage.getItem('token');
+
+    if (user && token) {
+      document.getElementById('user-name').textContent = user.nombre_usuario;
+      document.getElementById('user-name').classList.remove('hidden');
+      document.getElementById('perfil-link').classList.remove('hidden');
+      document.getElementById('auth-nav-link').classList.add('hidden');
+      document.getElementById('logout-button').classList.remove('hidden');
+
+      if (user.rol === 'admin') {
+        document.getElementById('admin-link').classList.remove('hidden');
+      }
+    }
+
+    // Logout
+    document.getElementById('logout-button').addEventListener('click', () => {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      window.location.reload();
+    });
+
+    // Estilos de navegación
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.classList.add('bg-transparent', 'text-red-600', 'py-2', 'px-4', 'rounded-lg', 'transition', 'duration-300', 'ease-in-out', 'transform', 'hover:scale-105', 'hover:shadow-md', 'hover:bg-gray-300', 'hover:text-black', 'inline-block');
+    });
+  </script>
+  <script src="/js/smoke-effect.js"></script>
+</body>
+
+</html>

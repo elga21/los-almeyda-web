@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios - Los Almeyda</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/animated-background.css">
+</head>
+
+<body class="bg-white min-h-screen font-inter">
+
+    <header class="bg-white shadow-md p-4 flex justify-between items-center rounded-b-lg">
+        <div class="flex-shrink-0">
+            <img src="/Imagenes/logo.jpeg" alt="Logo Los Almeyda" class="h-16">
+        </div>
+        <nav class="flex items-center space-x-2 sm:space-x-4">
+            <div class="text-center font-inter flex flex-wrap justify-center items-center space-x-2 sm:space-x-4">
+                <a href="/main.html" class="nav-link">Inicio</a>
+                <a href="/index.html" class="nav-link">Productos</a>
+                <a href="/recetas.html" class="nav-link">Recetas</a>
+                <a href="/servicios.html" class="nav-link bg-pink-100 text-red-600">Servicios</a>
+                <a href="/contacto.html" class="nav-link">Contacto</a>
+                <a id="perfil-link" href="/perfil.html" class="nav-link hidden">Perfil</a>
+                <a id="admin-link" href="/dashboard.html" class="nav-link hidden">Gestión</a>
+                <a href="/cart.html" class="nav-link">🛒 <span id="cart-count">0</span></a>
+                <span id="user-name" class="text-red-600 font-bold hidden"></span>
+                <a id="auth-nav-link" href="/auth.html" class="nav-link">Login / Registro</a>
+                <button id="logout-button" class="nav-link hidden">Cerrar Sesión</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-8">
+        <h1 class="text-4xl font-bold text-center text-red-700 mb-8">Nuestros Servicios</h1>
+
+        <div id="services-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Los servicios se cargan dinámicamente -->
+        </div>
+
+        <p id="no-services" class="text-center text-gray-500 text-xl hidden">No hay servicios disponibles</p>
+    </main>
+
+    <script src="/js/cursor-interaction.js"></script>
+    <script src="/js/servicios.js"></script>
+    <script>
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.add('bg-transparent', 'text-red-600', 'py-2', 'px-4', 'rounded-lg', 'transition', 'duration-300', 'ease-in-out', 'transform', 'hover:scale-105', 'hover:shadow-md', 'hover:bg-gray-300', 'hover:text-black', 'inline-block');
+        });
+    </script>
+</body>
+
+</html>
